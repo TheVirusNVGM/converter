@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Компрессор медиафайлов</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="background"></div>
+    <div class="container">
+        <h1 class="title">Компрессор медиафайлов</h1>
+        <div id="navigation">
+            <button onclick="showSection('compress-section')">Сжать</button>
+            <button onclick="showSection('convert-section')">Конвертировать</button>
+            <button onclick="showSection('trim-section')">Обрезать</button>
+            <button onclick="showSection('download-section')">Скачать с YouTube</button>
+        </div>
+        <div id="compress-section" class="section" style="display: none;">
+            <form id="compress-form">
+                <input type="file" id="file" name="file" required>
+                <label for="crf">Качество сжатия (0-51):</label>
+                <input type="range" id="crf" name="crf" min="0" max="51" value="28">
+                <span id="crf-value">28</span>
+                <button type="submit">Сжать</button>
+            </form>
+        </div>
+        <div id="convert-section" class="section" style="display: none;">
+            <form id="convert-form">
+                <input type="file" id="convert-file" name="file" required>
+                <label for="format">Формат:</label>
+                <select id="format" name="format" required>
+                    <option value="mp4">MP4</option>
+                    <option value="mp3">MP3</option>
+                </select>
+                <button type="submit">Конвертировать</button>
+            </form>
+        </div>
+        <div id="trim-section" class="section" style="display: none;">
+            <form id="trim-form">
+                <input type="file" id="trim-file" name="file" required>
+                <label for="start-time">Начальное время (в секундах):</label>
+                <input type="number" id="start-time" name="start-time" min="0" required>
+                <label for="end-time">Конечное время (в секундах):</label>
+                <input type="number" id="end-time" name="end-time" min="0" required>
+                <button type="submit">Обрезать</button>
+            </form>
+        </div>
+        <div id="download-section" class="section" style="display: none;">
+            <input type="number" id="num-videos" placeholder="Количество видео" min="1">
+            <button id="generate-links">Создать поля для ссылок</button>
+            <div id="link-container"></div>
+            <form id="download-form" style="display: none;">
+                <button type="submit">Скачать</button>
+            </form>
+        </div>
+        <div id="notification" class="notification"></div>
+    </div>
+    <audio id="click-sound" src="/static/minecraft_click.mp3"></audio>
+    <audio id="complete-sound" src="/static/orb.mp3"></audio>
+    <script src="/static/common.js"></script>
+    <script src="/static/compress.js"></script>
+    <script src="/static/convert.js"></script>
+    <script src="/static/trim.js"></script>
+    <script src="/static/download.js"></script>
+</body>
+</html>
